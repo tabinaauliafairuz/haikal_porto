@@ -1,4 +1,4 @@
-/* ===== NAV & THEME TOGGLE ===== */
+/* ===== NAV & THEME TOGGLE (EXACT ORIGINAL) ===== */
 nav {
   position: fixed;
   top: 0;
@@ -72,13 +72,19 @@ nav {
 .theme-toggle .icon {
   font-size: 1rem;
   transition: transform 0.4s;
+  display: flex;
+  align-items: center;
 }
 
+/* RESPONSIVE MOBILE EXACT MATCH DARI VERSI ASLI */
 @media (max-width: 900px) {
   nav {
     padding: 1rem 1.5rem;
   }
   .nav-links {
     display: none;
+  }
+  .nav-right {
+    gap: 0;
   }
 }

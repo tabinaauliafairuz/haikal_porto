@@ -1,26 +1,24 @@
 /**
  * Komponen: ModalDetailSertifikat.jsx
- * Fungsi: Jendela pop-up (dialog) yang menampilkan detail lengkap sertifikat,
- *         penjelasan kompetensi, badge lembaga, dan tombol tautan ke file asli Google Drive.
+ * Fungsi: Jendela pop-up detail sertifikat persis seperti versi asli.
  */
 import React, { useEffect } from "react";
-import { X, ExternalLink } from "lucide-react";
 import "../styles/galeri-sertifikat.css";
 
 export default function ModalDetailSertifikat({ dataSertifikat, onTutup }) {
   useEffect(() => {
     if (!dataSertifikat) return;
 
-    const handleTombolEsc = (e) => {
+    const handleKeyDown = (e) => {
       if (e.key === "Escape") onTutup();
     };
 
     document.body.style.overflow = "hidden";
-    document.addEventListener("keydown", handleTombolEsc);
+    document.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = "";
-      document.removeEventListener("keydown", handleTombolEsc);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [dataSertifikat, onTutup]);
 
@@ -28,35 +26,35 @@ export default function ModalDetailSertifikat({ dataSertifikat, onTutup }) {
 
   return (
     <div
+      id="certModal"
       className="modal-backdrop open"
       onClick={(e) => {
-        if (e.target.classList.contains("modal-backdrop")) onTutup();
+        if (e.target.id === "certModal") onTutup();
       }}
     >
       <div className="modal-box">
-        <button className="modal-close" onClick={onTutup} aria-label="Tutup jendela">
-          <X size={18} />
-        </button>
+        <button className="modal-close" onClick={onTutup}>?</button>
         <div className="modal-img-wrap">
           <img
+            id="modalImg"
             src={dataSertifikat.gambarPreview}
             alt={dataSertifikat.judul}
             className="modal-img"
           />
         </div>
         <div className="modal-content">
-          <div className="modal-badge">{dataSertifikat.labelBadge}</div>
-          <h3 className="modal-title">{dataSertifikat.judul}</h3>
-          <div className="modal-issuer">{dataSertifikat.penerbit}</div>
-          <p className="modal-desc">{dataSertifikat.deskripsi}</p>
+          <div className="modal-badge" id="modalBadge">{dataSertifikat.labelBadge}</div>
+          <h3 className="modal-title" id="modalTitle">{dataSertifikat.judul}</h3>
+          <div className="modal-issuer" id="modalIssuer">{dataSertifikat.penerbit}</div>
+          <p className="modal-desc" id="modalDesc">{dataSertifikat.deskripsi}</p>
           <a
+            id="modalLink"
             href={dataSertifikat.linkGoogleDrive}
             target="_blank"
             rel="noreferrer"
             className="modal-link-btn"
-            style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}
           >
-            Lihat Sertifikat Asli <ExternalLink size={16} />
+            Lihat Sertifikat Asli ?
           </a>
         </div>
       </div>

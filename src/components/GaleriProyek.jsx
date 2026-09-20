@@ -1,77 +1,71 @@
 /**
  * Komponen: GaleriProyek.jsx
- * Fungsi: Menampilkan daftar proyek pilihan beserta carousel slider gambar (dengan tombol prev/next,
- *         titik indikator/dots, dan gesture swipe layar sentuh).
+ * Fungsi: Menampilkan carousel proyek persis seperti versi asli.
  */
 import React, { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight, ExternalLink } from "lucide-react";
 import { daftarProyek } from "../data/dataPortofolio";
 import "../styles/galeri-proyek.css";
 
-function SliderGambarProyek({ proyek }) {
-  const [indexGambarAktif, setIndexGambarAktif] = useState(0);
-  const sentuhanAwalX = useRef(0);
-  const totalGambar = proyek.daftarGambar.length;
+function SliderGambarProyek({ proyek, id }) {
+  const [current, setCurrent] = useState(0);
+  const touchStartX = useRef(0);
+  const total = proyek.daftarGambar.length;
 
-  const geserSelanjutnya = () => {
-    setIndexGambarAktif((prev) => (prev + 1) % totalGambar);
+  const carouselNext = () => {
+    setCurrent((prev) => (prev + 1) % total);
   };
 
-  const geserSebelumnya = () => {
-    setIndexGambarAktif((prev) => (prev - 1 + totalGambar) % totalGambar);
+  const carouselPrev = () => {
+    setCurrent((prev) => (prev - 1 + total) % total);
   };
 
-  const mulaiSentuh = (e) => {
-    sentuhanAwalX.current = e.touches[0].clientX;
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
   };
 
-  const selesaiSentuh = (e) => {
-    const selisih = sentuhanAwalX.current - e.changedTouches[0].clientX;
-    if (Math.abs(selisih) > 40) {
-      if (selisih > 0) geserSelanjutnya();
-      else geserSebelumnya();
+  const handleTouchEnd = (e) => {
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) carouselNext();
+      else carouselPrev();
     }
   };
 
   return (
     <div
       className="project-carousel"
-      onTouchStart={mulaiSentuh}
-      onTouchEnd={selesaiSentuh}
+      data-carousel={id}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
     >
       <div
         className="carousel-track"
-        style={{ transform: `translateX(-${indexGambarAktif * 100}%)` }}
+        style={{ transform: `translateX(-${current * 100}%)` }}
       >
-        {proyek.daftarGambar.map((urlGambar, i) => (
+        {proyek.daftarGambar.map((url, i) => (
           <div className="carousel-slide" key={i}>
-            <img src={urlGambar} alt={`${proyek.judulProyek} - Slide ${i + 1}`} loading="lazy" />
+            <img src={url} alt={`${proyek.judulProyek} ${i + 1}`} />
           </div>
         ))}
       </div>
 
       <div className="carousel-overlay"></div>
 
-      <button className="carousel-btn prev" onClick={geserSebelumnya} aria-label="Gambar sebelumnya">
-        <ChevronLeft size={20} />
-      </button>
-      <button className="carousel-btn next" onClick={geserSelanjutnya} aria-label="Gambar berikutnya">
-        <ChevronRight size={20} />
-      </button>
+      <button className="carousel-btn prev" onClick={carouselPrev}>‹</button>
+      <button className="carousel-btn next" onClick={carouselNext}>›</button>
 
-      <div className="carousel-dots">
+      <div className="carousel-dots" id={`dots-${id}`}>
         {proyek.daftarGambar.map((_, i) => (
-          <button
+          <div
             key={i}
-            className={`carousel-dot ${i === indexGambarAktif ? "active" : ""}`}
-            onClick={() => setIndexGambarAktif(i)}
-            aria-label={`Lihat gambar ke-${i + 1}`}
+            className={`carousel-dot ${i === current ? "active" : ""}`}
+            onClick={() => setCurrent(i)}
           />
         ))}
       </div>
 
-      <div className="carousel-counter">
-        {indexGambarAktif + 1} / {totalGambar}
+      <div className="carousel-counter" id={`counter-${id}`}>
+        {current + 1} / {total}
       </div>
     </div>
   );
@@ -80,7 +74,7 @@ function SliderGambarProyek({ proyek }) {
 export default function GaleriProyek() {
   return (
     <section id="projects">
-      <p className="section-label">• Karya</p>
+      <p className="section-label">? Karya</p>
       <h2 className="section-title">Proyek Pilihan</h2>
 
       <div className="projects-list">
@@ -89,7 +83,7 @@ export default function GaleriProyek() {
             className={`project-showcase visible ${proyek.posisiTerbalik ? "reverse" : ""}`}
             key={proyek.id}
           >
-            <SliderGambarProyek proyek={proyek} />
+            <SliderGambarProyek proyek={proyek} id={proyek.id} />
 
             <div className="project-info">
               <div className="project-num">{proyek.nomorUrut}</div>
@@ -108,8 +102,7 @@ export default function GaleriProyek() {
                   rel="noreferrer"
                   className="project-showcase-link"
                 >
-                  <span>{proyek.teksLink || "Lihat Projek"}</span>
-                  <ExternalLink size={15} />
+                  {proyek.teksLink || "Lihat Sertifikat ?"}
                 </a>
               )}
             </div>

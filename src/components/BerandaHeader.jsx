@@ -1,10 +1,8 @@
 /**
  * Komponen: BerandaHeader.jsx
- * Fungsi: Menampilkan bagian paling atas web (Salam pembuka, Nama lengkap,
- *         Profesi/Jurusan, Animasi teks berganti-ganti, Foto profil & Tombol aksi).
+ * Fungsi: Header persis seperti versi asli.
  */
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
 import { dataPribadi } from "../data/dataPortofolio";
 import "../styles/beranda-header.css";
 
@@ -64,9 +62,7 @@ export default function BerandaHeader() {
 
       <div id="hero">
         <div className="hero-text">
-          <div className="hero-tag" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-            <Sparkles size={14} /> {dataPribadi.jurusan}
-          </div>
+          <div className="hero-tag">? {dataPribadi.jurusan}</div>
           <h1 className="hero-name">
             Haikal Abdul<br />Fattah Al Hamdi
           </h1>
@@ -76,9 +72,7 @@ export default function BerandaHeader() {
             <span className="cursor-blink"></span>
           </p>
           <div className="hero-actions">
-            <a href="#projects" className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: "0.4rem" }}>
-              Lihat Proyek <ArrowRight size={16} />
-            </a>
+            <a href="#projects" className="btn-primary">Lihat Proyek ?</a>
             <a href="#contact" className="btn-outline">Hubungi Saya</a>
           </div>
         </div>

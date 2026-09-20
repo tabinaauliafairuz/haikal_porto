@@ -1,4 +1,4 @@
-/* ===== CERTIFICATES & MODAL ===== */
+/* ===== CERT GALLERY (EXACT ORIGINAL) ===== */
 .certs-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -101,7 +101,7 @@
   filter: brightness(1.1);
 }
 
-/* Modal Popup */
+/* MODAL */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -233,21 +233,4 @@
 .modal-link-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px var(--shadow);
-}
-
-@media (max-width: 600px) {
-  .certs-gallery {
-    grid-template-columns: 1fr;
-    gap: 1.4rem;
-  }
-  .modal-box {
-    margin: 1rem;
-    max-height: 85vh;
-  }
-  .modal-img-wrap {
-    height: 200px;
-  }
-  .modal-content {
-    padding: 1.2rem 1.4rem 1.5rem;
-  }
 }

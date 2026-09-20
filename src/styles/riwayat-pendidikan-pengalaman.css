@@ -1,5 +1,9 @@
-/* ===== EDUCATION & EXPERIENCE TIMELINE ===== */
-#education, #organisasi {
+/* ===== EDUCATION & EXPERIENCE TIMELINE (EXACT ORIGINAL) ===== */
+#education {
+  padding-bottom: 5rem;
+}
+
+#organisasi {
   padding-bottom: 5rem;
 }
 
@@ -28,6 +32,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.1rem;
   flex-shrink: 0;
 }
 
@@ -178,22 +183,21 @@
 
 .timeline-bullet-list li {
   display: flex;
-  align-items: flex-start;
-  gap: 0.6rem;
+  gap: 0.5rem;
   font-size: 0.83rem;
   color: var(--muted);
   line-height: 1.6;
 }
 
-.timeline-bullet-list li .bullet-icon {
+.timeline-bullet-list li::before {
+  content: "\25B9";
   color: var(--accent);
   flex-shrink: 0;
-  margin-top: 0.25rem;
+  margin-top: 0.05rem;
 }
 
 @media (max-width: 900px) {
   .edu-exp-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
   }
 }

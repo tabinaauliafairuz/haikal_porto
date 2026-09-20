@@ -1,10 +1,8 @@
 /**
  * Komponen: TentangProfil.jsx
- * Fungsi: Menampilkan ringkasan profil pribadi, hitungan angka statistik (IPK, Semester, Sertifikasi),
- *         indikator keahlian (Akuntansi, Pajak, Web Dev, dll), dan info kontak cepat.
+ * Fungsi: Menampilkan profil persis seperti versi asli.
  */
 import React, { useEffect, useRef, useState } from "react";
-import { Mail, Phone, Landmark, MapPin, GraduationCap, Sparkles } from "lucide-react";
 import { dataPribadi, daftarKeahlian } from "../data/dataPortofolio";
 import "../styles/tentang-profil.css";
 
@@ -44,9 +42,7 @@ export default function TentangProfil() {
 
   return (
     <section id="about" ref={refBagian}>
-      <p className="section-label" style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-        <Sparkles size={13} /> Tentang Saya
-      </p>
+      <p className="section-label">? Tentang Saya</p>
       <h2 className="section-title">Profil & Informasi</h2>
       <div className="about-grid">
         <div className="about-text">
@@ -93,33 +89,23 @@ export default function TentangProfil() {
 
         <div className="about-info">
           <div className="info-row">
-            <span className="info-icon" style={{ display: "flex", alignItems: "center" }}>
-              <Mail size={18} />
-            </span>
+            <span className="info-icon">??</span>
             <span>{dataPribadi.email}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon" style={{ display: "flex", alignItems: "center" }}>
-              <Phone size={18} />
-            </span>
+            <span className="info-icon">??</span>
             <span>{dataPribadi.telepon}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon" style={{ display: "flex", alignItems: "center" }}>
-              <Landmark size={18} />
-            </span>
+            <span className="info-icon">???</span>
             <span>{dataPribadi.kampus}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon" style={{ display: "flex", alignItems: "center" }}>
-              <MapPin size={18} />
-            </span>
+            <span className="info-icon">??</span>
             <span>{dataPribadi.lokasi}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon" style={{ display: "flex", alignItems: "center" }}>
-              <GraduationCap size={18} />
-            </span>
+            <span className="info-icon">??</span>
             <span>{dataPribadi.programStudi}</span>
           </div>
         </div>

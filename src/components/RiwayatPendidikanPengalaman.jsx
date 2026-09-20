@@ -1,12 +1,11 @@
 /**
  * Komponen: RiwayatPendidikanPengalaman.jsx
- * Fungsi: Menampilkan dua garis waktu (timeline):
+ * Fungsi: Menampilkan dua garis waktu (timeline) persis seperti versi asli:
  *         1. Riwayat Pendidikan (Mata kuliah unggulan, IPK, Kampus)
  *         2. Riwayat Pengalaman Kerja / Magang
  *         3. Riwayat Aktivitas Organisasi
  */
 import React from "react";
-import { GraduationCap, Briefcase, Star, Sparkles, ChevronRight } from "lucide-react";
 import {
   riwayatPendidikan,
   riwayatMagang,
@@ -18,17 +17,13 @@ export default function RiwayatPendidikanPengalaman() {
   return (
     <>
       <section id="education">
-        <p className="section-label" style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-          <Sparkles size={13} /> Perjalanan
-        </p>
+        <p className="section-label">? Perjalanan</p>
         <h2 className="section-title">Pendidikan & Pengalaman</h2>
         <div className="edu-exp-grid">
           {/* Kolom Kiri: Riwayat Pendidikan */}
           <div>
             <div className="timeline-col-header">
-              <div className="timeline-col-icon">
-                <GraduationCap size={20} color="var(--accent)" />
-              </div>
+              <div className="timeline-col-icon">??</div>
               <div>
                 <div className="timeline-col-title">Pendidikan</div>
                 <div className="timeline-col-subtitle">Academic Background</div>
@@ -43,9 +38,7 @@ export default function RiwayatPendidikanPengalaman() {
                   <div className="timeline-inst">{edu.institusi}</div>
                   <div className="timeline-loc">{edu.jurusanDanLokasi}</div>
                   {edu.badgeNilai && (
-                    <div className="timeline-ipk">
-                      <Star size={13} fill="currentColor" /> {edu.badgeNilai}
-                    </div>
+                    <div className="timeline-ipk">? {edu.badgeNilai}</div>
                   )}
                   <div className="timeline-courses">
                     {edu.mataKuliah.map((mk, i) => (
@@ -60,9 +53,7 @@ export default function RiwayatPendidikanPengalaman() {
           {/* Kolom Kanan: Riwayat Magang */}
           <div>
             <div className="timeline-col-header">
-              <div className="timeline-col-icon">
-                <Briefcase size={20} color="var(--accent)" />
-              </div>
+              <div className="timeline-col-icon">??</div>
               <div>
                 <div className="timeline-col-title">Pengalaman</div>
                 <div className="timeline-col-subtitle">Work Experience</div>
@@ -78,10 +69,7 @@ export default function RiwayatPendidikanPengalaman() {
                   <div className="timeline-loc">{magang.posisiDanLokasi}</div>
                   <ul className="timeline-bullet-list">
                     {magang.rincianTugas.map((tugas, i) => (
-                      <li key={i}>
-                        <ChevronRight size={14} className="bullet-icon" />
-                        <span>{tugas}</span>
-                      </li>
+                      <li key={i}>{tugas}</li>
                     ))}
                   </ul>
                 </div>
@@ -93,9 +81,7 @@ export default function RiwayatPendidikanPengalaman() {
 
       {/* Bagian Riwayat Organisasi */}
       <section id="organisasi">
-        <p className="section-label" style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
-          <Sparkles size={13} /> Organisasi
-        </p>
+        <p className="section-label">? Organisasi</p>
         <h2 className="section-title">Pengalaman Organisasi</h2>
         <div>
           {riwayatOrganisasi.map((org, idx) => (
@@ -107,10 +93,7 @@ export default function RiwayatPendidikanPengalaman() {
                 <div className="timeline-loc">{org.jabatanDanLokasi}</div>
                 <ul className="timeline-bullet-list">
                   {org.rincianPeran.map((peran, i) => (
-                    <li key={i}>
-                      <ChevronRight size={14} className="bullet-icon" />
-                      <span>{peran}</span>
-                    </li>
+                    <li key={i}>{peran}</li>
                   ))}
                 </ul>
               </div>
