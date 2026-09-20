@@ -1,8 +1,5 @@
-/**
- * Komponen: TentangProfil.jsx
- * Fungsi: Menampilkan profil persis seperti versi asli.
- */
 import React, { useEffect, useRef, useState } from "react";
+import { Mail, Phone, Landmark, MapPin, GraduationCap } from "lucide-react";
 import { dataPribadi, daftarKeahlian } from "../data/dataPortofolio";
 import "../styles/tentang-profil.css";
 
@@ -89,23 +86,23 @@ export default function TentangProfil() {
 
         <div className="about-info">
           <div className="info-row">
-            <span className="info-icon">??</span>
+            <span className="info-icon"><Mail size={18} /></span>
             <span>{dataPribadi.email}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon">??</span>
+            <span className="info-icon"><Phone size={18} /></span>
             <span>{dataPribadi.telepon}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon">???</span>
+            <span className="info-icon"><Landmark size={18} /></span>
             <span>{dataPribadi.kampus}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon">??</span>
+            <span className="info-icon"><MapPin size={18} /></span>
             <span>{dataPribadi.lokasi}</span>
           </div>
           <div className="info-row">
-            <span className="info-icon">??</span>
+            <span className="info-icon"><GraduationCap size={18} /></span>
             <span>{dataPribadi.programStudi}</span>
           </div>
         </div>

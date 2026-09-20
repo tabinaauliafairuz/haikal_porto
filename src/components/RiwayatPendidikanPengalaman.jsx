@@ -1,11 +1,5 @@
-/**
- * Komponen: RiwayatPendidikanPengalaman.jsx
- * Fungsi: Menampilkan dua garis waktu (timeline) persis seperti versi asli:
- *         1. Riwayat Pendidikan (Mata kuliah unggulan, IPK, Kampus)
- *         2. Riwayat Pengalaman Kerja / Magang
- *         3. Riwayat Aktivitas Organisasi
- */
 import React from "react";
+import { GraduationCap, Briefcase, Star, ChevronRight } from "lucide-react";
 import {
   riwayatPendidikan,
   riwayatMagang,
@@ -23,7 +17,9 @@ export default function RiwayatPendidikanPengalaman() {
           {/* Kolom Kiri: Riwayat Pendidikan */}
           <div>
             <div className="timeline-col-header">
-              <div className="timeline-col-icon">??</div>
+              <div className="timeline-col-icon">
+                <GraduationCap size={20} color="var(--accent)" />
+              </div>
               <div>
                 <div className="timeline-col-title">Pendidikan</div>
                 <div className="timeline-col-subtitle">Academic Background</div>
@@ -38,7 +34,9 @@ export default function RiwayatPendidikanPengalaman() {
                   <div className="timeline-inst">{edu.institusi}</div>
                   <div className="timeline-loc">{edu.jurusanDanLokasi}</div>
                   {edu.badgeNilai && (
-                    <div className="timeline-ipk">? {edu.badgeNilai}</div>
+                    <div className="timeline-ipk">
+                      <Star size={13} fill="currentColor" /> {edu.badgeNilai}
+                    </div>
                   )}
                   <div className="timeline-courses">
                     {edu.mataKuliah.map((mk, i) => (
@@ -53,7 +51,9 @@ export default function RiwayatPendidikanPengalaman() {
           {/* Kolom Kanan: Riwayat Magang */}
           <div>
             <div className="timeline-col-header">
-              <div className="timeline-col-icon">??</div>
+              <div className="timeline-col-icon">
+                <Briefcase size={20} color="var(--accent)" />
+              </div>
               <div>
                 <div className="timeline-col-title">Pengalaman</div>
                 <div className="timeline-col-subtitle">Work Experience</div>

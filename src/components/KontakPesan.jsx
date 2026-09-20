@@ -1,10 +1,26 @@
-/**
- * Komponen: KontakPesan.jsx
- * Fungsi: Kontak persis seperti versi asli.
- */
 import React, { useState } from "react";
+import { MessageCircle, Mail, Send, Check } from "lucide-react";
 import { dataPribadi } from "../data/dataPortofolio";
-import "../styles/kontak-pesan.css";
+import "../styles/contact.css";
+
+function LinkedinIcon({ size = 32 }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect x="2" y="9" width="4" height="12" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  );
+}
 
 export default function KontakPesan() {
   const [btnText, setBtnText] = useState("Kirim Pesan ?");
@@ -39,7 +55,9 @@ export default function KontakPesan() {
           rel="noreferrer"
           className="contact-card"
         >
-          <div className="contact-card-icon">??</div>
+          <div className="contact-card-icon" style={{ color: "var(--accent)" }}>
+            <MessageCircle size={32} />
+          </div>
           <div className="contact-card-label">WhatsApp</div>
           <div className="contact-card-value">{dataPribadi.telepon}</div>
         </a>
@@ -50,13 +68,17 @@ export default function KontakPesan() {
           rel="noreferrer"
           className="contact-card"
         >
-          <div className="contact-card-icon">??</div>
+          <div className="contact-card-icon" style={{ color: "var(--accent)" }}>
+            <LinkedinIcon size={32} />
+          </div>
           <div className="contact-card-label">LinkedIn</div>
           <div className="contact-card-value">Lihat Profil ?</div>
         </a>
 
         <a href={`mailto:${dataPribadi.email}`} className="contact-card">
-          <div className="contact-card-icon">??</div>
+          <div className="contact-card-icon" style={{ color: "var(--accent)" }}>
+            <Mail size={32} />
+          </div>
           <div className="contact-card-label">Email</div>
           <div className="contact-card-value">{dataPribadi.email}</div>
         </a>

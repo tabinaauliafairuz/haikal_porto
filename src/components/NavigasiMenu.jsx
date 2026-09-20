@@ -1,8 +1,5 @@
-/**
- * Komponen: NavigasiMenu.jsx
- * Fungsi: Menu navigasi bagian atas persis seperti versi asli.
- */
 import React from "react";
+import { Moon, Sun } from "lucide-react";
 import "../styles/navigasi-menu.css";
 
 export default function NavigasiMenu({ tema, onUbahTema }) {
@@ -25,7 +22,7 @@ export default function NavigasiMenu({ tema, onUbahTema }) {
           aria-label="Toggle theme"
         >
           <span className="icon" id="themeIcon">
-            {tema === "dark" ? "??" : "??"}
+            {tema === "dark" ? <Moon size={15} /> : <Sun size={15} />}
           </span>
           <span id="themeLabel">
             {tema === "dark" ? "Terang" : "Gelap"}
