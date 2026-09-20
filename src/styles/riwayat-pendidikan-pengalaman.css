@@ -1,0 +1,199 @@
+/* ===== EDUCATION & EXPERIENCE TIMELINE ===== */
+#education, #organisasi {
+  padding-bottom: 5rem;
+}
+
+.edu-exp-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 0.5rem;
+}
+
+.timeline-col-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.timeline-col-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.timeline-col-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.timeline-col-subtitle {
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 1.6rem;
+  margin-bottom: 1.6rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: -1.6rem;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+
+.timeline-item:last-child::before {
+  display: none;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -5px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.timeline-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.8rem;
+  padding: 1.3rem 1.4rem;
+  transition: all 0.35s;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2));
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.timeline-card:hover::before {
+  opacity: 1;
+}
+
+.timeline-card:hover {
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+
+.timeline-period {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.35rem;
+  font-weight: 500;
+}
+
+.timeline-inst {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.2rem;
+  color: var(--text);
+}
+
+.timeline-loc {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+}
+
+.timeline-ipk {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.7rem;
+  border-radius: 2rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-courses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.timeline-course-tag {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.3rem;
+  transition: all 0.2s;
+}
+
+.timeline-course-tag:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(45, 212, 191, 0.05);
+}
+
+.timeline-bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.timeline-bullet-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-size: 0.83rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.timeline-bullet-list li .bullet-icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 900px) {
+  .edu-exp-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

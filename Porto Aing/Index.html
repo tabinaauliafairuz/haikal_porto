@@ -1,0 +1,2310 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Haikal Abdul Fattah Al Hamdi - Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== THEMES ===== */
+      :root[data-theme="dark"] {
+        --bg: #0a0f1e;
+        --surface: #111827;
+        --card: #161f30;
+        --card-hover: #1c2840;
+        --accent: #2dd4bf;
+        --accent2: #38bdf8;
+        --gold: #f59e0b;
+        --text: #e2e8f0;
+        --muted: #94a3b8;
+        --border: rgba(45, 212, 191, 0.15);
+        --border-hover: rgba(45, 212, 191, 0.4);
+        --nav-bg: rgba(10, 15, 30, 0.88);
+        --shadow: rgba(45, 212, 191, 0.15);
+        --orb1: rgba(45, 212, 191, 0.07);
+        --orb2: rgba(56, 189, 248, 0.06);
+        --particle: rgba(45, 212, 191, 0.5);
+        --hero-gradient: linear-gradient(
+          135deg,
+          #e2e8f0 0%,
+          #2dd4bf 60%,
+          #38bdf8 100%
+        );
+        --section-label: var(--accent);
+        --info-icon: var(--accent);
+      }
+      :root[data-theme="light"] {
+        --bg: #f0f4f8;
+        --surface: #ffffff;
+        --card: #ffffff;
+        --card-hover: #f8fafc;
+        --accent: #0d9488;
+        --accent2: #0284c7;
+        --gold: #d97706;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: rgba(13, 148, 136, 0.18);
+        --border-hover: rgba(13, 148, 136, 0.5);
+        --nav-bg: rgba(240, 244, 248, 0.92);
+        --shadow: rgba(13, 148, 136, 0.12);
+        --orb1: rgba(13, 148, 136, 0.07);
+        --orb2: rgba(2, 132, 199, 0.07);
+        --particle: rgba(13, 148, 136, 0.4);
+        --hero-gradient: linear-gradient(
+          135deg,
+          #0f172a 0%,
+          #0d9488 55%,
+          #0284c7 100%
+        );
+        --section-label: var(--accent);
+        --info-icon: var(--accent);
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        line-height: 1.7;
+        overflow-x: hidden;
+        transition: background 0.4s ease, color 0.4s ease;
+      }
+
+      /* CANVAS PARTICLES */
+      #particle-canvas {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.6;
+      }
+
+      /* FLOATING ORBS */
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+        animation: orbFloat 12s ease-in-out infinite;
+      }
+      .orb-1 {
+        width: 500px;
+        height: 500px;
+        background: var(--orb1);
+        top: -150px;
+        right: -100px;
+        animation-delay: 0s;
+      }
+      .orb-2 {
+        width: 400px;
+        height: 400px;
+        background: var(--orb2);
+        bottom: 10%;
+        left: -100px;
+        animation-delay: -6s;
+      }
+      @keyframes orbFloat {
+        0%,
+        100% {
+          transform: translateY(0) scale(1);
+        }
+        50% {
+          transform: translateY(-40px) scale(1.05);
+        }
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 4rem;
+        background: var(--nav-bg);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+        transition: background 0.4s;
+      }
+      .nav-logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      /* THEME TOGGLE */
+      .theme-toggle {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 2rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.35rem 0.8rem;
+        font-size: 0.85rem;
+        color: var(--muted);
+        transition: all 0.3s;
+        white-space: nowrap;
+      }
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+      .theme-toggle .icon {
+        font-size: 1rem;
+        transition: transform 0.4s;
+      }
+
+      /* SECTIONS */
+      section {
+        position: relative;
+        z-index: 1;
+        padding: 6rem 4rem;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* HERO */
+      #hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 4rem;
+        padding-top: 8rem;
+      }
+      .hero-tag {
+        display: inline-block;
+        background: rgba(45, 212, 191, 0.1);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        font-size: 0.78rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.35rem 1rem;
+        border-radius: 2rem;
+        margin-bottom: 1.5rem;
+        animation: fadeSlideUp 0.8s ease both;
+      }
+      .hero-name {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1.2rem;
+        background: var(--hero-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: fadeSlideUp 0.8s 0.1s ease both;
+      }
+      .hero-desc {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 480px;
+        margin-bottom: 2rem;
+        font-weight: 300;
+        animation: fadeSlideUp 0.8s 0.2s ease both;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        animation: fadeSlideUp 0.8s 0.3s ease both;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #0a0f1e;
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        font-weight: 500;
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--shadow);
+      }
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--text);
+        padding: 0.75rem 2rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .btn-outline:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .hero-img-wrap {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        position: relative;
+        animation: fadeSlideUp 0.8s 0.15s ease both;
+      }
+      .hero-img-ring {
+        position: absolute;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        border: 1px dashed rgba(45, 212, 191, 0.25);
+        animation: spinSlow 20s linear infinite;
+      }
+      .hero-img-ring::before {
+        content: "";
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        transform: translateX(-50%);
+      }
+      .hero-img-bg {
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        border-radius: 50%;
+        background: radial-gradient(circle, var(--orb1) 0%, transparent 70%);
+        bottom: 0;
+      }
+      .hero-img {
+        width: 300px;
+        border-radius: 20px;
+        object-fit: cover;
+        position: relative;
+        z-index: 2;
+        filter: drop-shadow(0 20px 40px var(--shadow));
+        transition: transform 0.4s ease;
+      }
+      .hero-img:hover {
+        transform: scale(1.03) translateY(-4px);
+      }
+      @keyframes spinSlow {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* SCROLL INDICATOR */
+      .scroll-hint {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: var(--muted);
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        animation: bounce 2s ease infinite;
+      }
+      .scroll-hint span {
+        width: 1px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* SECTION LABELS */
+      .section-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--section-label);
+        margin-bottom: 0.6rem;
+      }
+      .section-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3vw, 2.8rem);
+        font-weight: 700;
+        margin-bottom: 3rem;
+      }
+
+      /* ABOUT */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      .about-text p {
+        color: var(--muted);
+        line-height: 1.8;
+      }
+      .stats-row {
+        display: flex;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2rem;
+        font-weight: 900;
+        color: var(--accent);
+        display: block;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        color: var(--muted);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .info-row {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.9rem 1.2rem;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        margin-bottom: 0.8rem;
+        transition: all 0.3s;
+      }
+      .info-row:hover {
+        border-color: var(--border-hover);
+        transform: translateX(4px);
+      }
+      .info-icon {
+        color: var(--accent);
+        font-size: 1.1rem;
+      }
+
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      .skill-chip {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 0.6rem;
+        padding: 1rem 1.2rem;
+        font-size: 0.85rem;
+        transition: all 0.3s;
+        cursor: default;
+        position: relative;
+        overflow: hidden;
+      }
+      .skill-chip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .skill-chip:hover::before {
+        opacity: 0.07;
+      }
+      .skill-chip:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px var(--shadow);
+      }
+      .skill-name {
+        position: relative;
+        z-index: 1;
+        font-weight: 500;
+      }
+      .skill-bar {
+        position: relative;
+        z-index: 1;
+        margin-top: 0.5rem;
+        height: 3px;
+        background: var(--border);
+        border-radius: 2px;
+      }
+      .skill-fill {
+        height: 100%;
+        border-radius: 2px;
+        background: linear-gradient(to right, var(--accent), var(--accent2));
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* PROJECTS SHOWCASE */
+      .projects-list {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      }
+      .project-showcase {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 3.5rem;
+        align-items: center;
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .project-showcase.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .project-showcase.reverse {
+        direction: rtl;
+      }
+      .project-showcase.reverse > * {
+        direction: ltr;
+      }
+
+      /* Photo carousel */
+      .project-carousel {
+        position: relative;
+        border-radius: 1.2rem;
+        overflow: hidden;
+        background: var(--card);
+        border: 1px solid var(--border);
+        aspect-ratio: 16/10;
+        box-shadow: 0 24px 60px var(--shadow);
+      }
+      .carousel-track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .carousel-slide {
+        min-width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .carousel-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        background: var(--card);
+      }
+      .carousel-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(10,15,30,0.5) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      /* Prev / Next arrows */
+      .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(10,15,30,0.6);
+        border: 1px solid var(--border);
+        color: var(--text);
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        transition: all 0.25s;
+        z-index: 5;
+        backdrop-filter: blur(6px);
+        opacity: 0;
+      }
+      .project-carousel:hover .carousel-btn {
+        opacity: 1;
+      }
+      .carousel-btn:hover {
+        background: var(--accent);
+        color: #0a0f1e;
+        border-color: var(--accent);
+      }
+      .carousel-btn.prev { left: 0.8rem; }
+      .carousel-btn.next { right: 0.8rem; }
+      /* Dots */
+      .carousel-dots {
+        position: absolute;
+        bottom: 0.9rem;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 0.45rem;
+        z-index: 5;
+      }
+      .carousel-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.35);
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .carousel-dot.active {
+        background: var(--accent);
+        width: 20px;
+        border-radius: 3px;
+      }
+      /* Counter badge */
+      .carousel-counter {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(10,15,30,0.6);
+        backdrop-filter: blur(6px);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.7rem;
+        padding: 0.25rem 0.6rem;
+        border-radius: 2rem;
+        z-index: 5;
+        letter-spacing: 0.08em;
+      }
+
+      /* Project info side */
+      .project-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .project-num {
+        font-family: "Playfair Display", serif;
+        font-size: 3.5rem;
+        font-weight: 900;
+        line-height: 1;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        opacity: 0.25;
+        letter-spacing: -0.02em;
+      }
+      .project-tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .project-tag {
+        background: rgba(45,212,191,0.08);
+        border: 1px solid rgba(45,212,191,0.2);
+        color: var(--accent);
+        font-size: 0.7rem;
+        padding: 0.2rem 0.65rem;
+        border-radius: 2rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .project-showcase-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.4rem, 2.5vw, 2rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--text);
+      }
+      .project-showcase-desc {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.8;
+      }
+      .project-divider {
+        width: 40px;
+        height: 2px;
+        background: linear-gradient(to right, var(--accent), var(--accent2));
+        border-radius: 2px;
+      }
+      .project-showcase-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent);
+        font-size: 0.85rem;
+        font-weight: 500;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        padding: 0.6rem 1.3rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s;
+        align-self: flex-start;
+        letter-spacing: 0.04em;
+      }
+      .project-showcase-link:hover {
+        border-color: var(--accent);
+        background: rgba(45,212,191,0.06);
+        gap: 0.8rem;
+      }
+
+      /* CERT GALLERY */
+      .certs-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.8rem;
+      }
+      .cert-gallery-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        overflow: hidden;
+        transition: all 0.4s;
+      }
+      .cert-gallery-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--gold);
+        box-shadow: 0 20px 50px rgba(245, 158, 11, 0.12);
+      }
+      .cert-gallery-img-wrap {
+        position: relative;
+        overflow: hidden;
+        height: 210px;
+        background: #0d1525;
+      }
+      .cert-gallery-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+        transition: transform 0.5s ease;
+      }
+      .cert-gallery-card:hover .cert-gallery-img {
+        transform: scale(1.06);
+      }
+      .cert-gallery-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(10, 15, 30, 0.7) 0%,
+          transparent 60%
+        );
+        display: flex;
+        align-items: flex-end;
+        padding: 1rem;
+      }
+      .cert-gallery-badge {
+        background: rgba(245, 158, 11, 0.2);
+        border: 1px solid rgba(245, 158, 11, 0.5);
+        color: #f59e0b;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.7rem;
+        border-radius: 2rem;
+      }
+      .cert-gallery-body {
+        padding: 1.2rem 1.4rem 1.4rem;
+      }
+      .cert-gallery-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+      .cert-gallery-issuer {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+      }
+      .cert-detail-btn {
+        width: 100%;
+        padding: 0.7rem;
+        background: var(--accent);
+        color: #0a0f1e;
+        border: none;
+        border-radius: 0.5rem;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 700;
+        font-size: 0.82rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .cert-detail-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px var(--shadow);
+        filter: brightness(1.1);
+      }
+
+      /* MODAL */
+      .modal-backdrop {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(6px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+      }
+      .modal-backdrop.open {
+        opacity: 1;
+        pointer-events: all;
+      }
+      .modal-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1.2rem;
+        max-width: 680px;
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        transform: translateY(24px) scale(0.97);
+        transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+      .modal-backdrop.open .modal-box {
+        transform: translateY(0) scale(1);
+      }
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        z-index: 10;
+        background: rgba(0, 0, 0, 0.4);
+        border: 1px solid var(--border);
+        color: var(--text);
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .modal-close:hover {
+        background: var(--accent);
+        color: #0a0f1e;
+        border-color: var(--accent);
+      }
+      .modal-img-wrap {
+        height: 280px;
+        overflow: hidden;
+        background: #0d1525;
+      }
+      .modal-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+      .modal-content {
+        padding: 1.8rem 2rem 2rem;
+      }
+      .modal-badge {
+        display: inline-block;
+        margin-bottom: 0.8rem;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        color: #f59e0b;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.25rem 0.8rem;
+        border-radius: 2rem;
+      }
+      .modal-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.4rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
+      }
+      .modal-issuer {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin-bottom: 1.2rem;
+      }
+      .modal-desc {
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.8;
+        margin-bottom: 1.6rem;
+      }
+      .modal-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: var(--accent);
+        color: #0a0f1e;
+        padding: 0.7rem 1.6rem;
+        border-radius: 0.5rem;
+        font-weight: 700;
+        font-size: 0.85rem;
+        text-decoration: none;
+        transition: all 0.3s;
+        letter-spacing: 0.04em;
+      }
+      .modal-link-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px var(--shadow);
+      }
+
+      /* CONTACT */
+      #contact {
+        text-align: center;
+      }
+      .contact-tagline {
+        color: var(--muted);
+        font-size: 1rem;
+        font-weight: 300;
+        max-width: 580px;
+        margin: 0 auto 3rem;
+        line-height: 1.8;
+      }
+      .contact-tagline em {
+        font-style: italic;
+        font-family: "Playfair Display", serif;
+        color: var(--text);
+        font-size: 1.05rem;
+      }
+      .contact-cards {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .contact-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1.8rem 2rem;
+        text-decoration: none;
+        color: var(--text);
+        transition: all 0.35s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.8rem;
+        min-width: 160px;
+        position: relative;
+        overflow: hidden;
+      }
+      .contact-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(to right, var(--accent), var(--accent2));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.35s;
+      }
+      .contact-card:hover::after {
+        transform: scaleX(1);
+      }
+      .contact-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-5px);
+        box-shadow: 0 16px 40px var(--shadow);
+      }
+      .contact-card-icon {
+        font-size: 2rem;
+      }
+      .contact-card-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .contact-card-value {
+        font-size: 0.88rem;
+        font-weight: 500;
+        color: var(--accent);
+      }
+      .contact-divider {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        max-width: 400px;
+        margin: 0 auto 2rem;
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .contact-divider::before,
+      .contact-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* TYPED CURSOR */
+      .cursor-blink {
+        display: inline-block;
+        width: 2px;
+        height: 1em;
+        background: var(--accent);
+        margin-left: 2px;
+        animation: blink 0.9s step-end infinite;
+        vertical-align: middle;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+
+      /* ===== EDUCATION & EXPERIENCE TIMELINE ===== */
+      #education {
+        padding-bottom: 5rem;
+      }
+      .edu-exp-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 0.5rem;
+      }
+      .timeline-col-header {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .timeline-col-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(45, 212, 191, 0.1);
+        border: 1px solid var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        flex-shrink: 0;
+      }
+      .timeline-col-title {
+        font-family: "Playfair Display", serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: var(--text);
+      }
+      .timeline-col-subtitle {
+        font-size: 0.75rem;
+        color: var(--muted);
+        letter-spacing: 0.06em;
+      }
+
+      /* Timeline item */
+      .timeline-item {
+        position: relative;
+        padding-left: 1.6rem;
+        margin-bottom: 1.6rem;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: -1.6rem;
+        width: 1px;
+        background: linear-gradient(to bottom, var(--accent), transparent);
+      }
+      .timeline-item:last-child::before {
+        display: none;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -5px;
+        top: 6px;
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 10px var(--accent);
+      }
+      .timeline-card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 0.8rem;
+        padding: 1.3rem 1.4rem;
+        transition: all 0.35s;
+        position: relative;
+        overflow: hidden;
+      }
+      .timeline-card::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, var(--accent), var(--accent2));
+        border-radius: 2px;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .timeline-card:hover::before {
+        opacity: 1;
+      }
+      .timeline-card:hover {
+        border-color: var(--border-hover);
+        transform: translateX(4px);
+        box-shadow: 0 8px 24px var(--shadow);
+      }
+      .timeline-period {
+        font-size: 0.72rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.35rem;
+        font-weight: 500;
+      }
+      .timeline-inst {
+        font-family: "Playfair Display", serif;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin-bottom: 0.2rem;
+        color: var(--text);
+      }
+      .timeline-loc {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+      .timeline-ipk {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(45, 212, 191, 0.08);
+        border: 1px solid rgba(45, 212, 191, 0.2);
+        color: var(--accent);
+        font-size: 0.75rem;
+        font-weight: 600;
+        padding: 0.2rem 0.7rem;
+        border-radius: 2rem;
+        margin-bottom: 1rem;
+      }
+      .timeline-courses {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .timeline-course-tag {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+        border-radius: 0.3rem;
+        transition: all 0.2s;
+      }
+      .timeline-course-tag:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: rgba(45, 212, 191, 0.05);
+      }
+      .timeline-bullet-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .timeline-bullet-list li {
+        display: flex;
+        gap: 0.5rem;
+        font-size: 0.83rem;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .timeline-bullet-list li::before {
+        content: "-";
+        color: var(--accent);
+        flex-shrink: 0;
+        margin-top: 0.05rem;
+      }
+
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 2.5rem;
+        color: var(--muted);
+        border-top: 1px solid var(--border);
+        font-size: 0.85rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 900px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        #hero {
+          grid-template-columns: 1fr;
+          text-align: center;
+          gap: 2rem;
+        }
+        .hero-img-wrap {
+          order: -1;
+        }
+        .hero-desc {
+          margin: 0 auto 2rem;
+        }
+        .hero-actions {
+          justify-content: center;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+        .edu-exp-grid {
+          grid-template-columns: 1fr;
+        }
+        .project-showcase,
+        .project-showcase.reverse {
+          grid-template-columns: 1fr;
+          direction: ltr;
+          gap: 1.8rem;
+        }
+        .project-num {
+          font-size: 2.5rem;
+        }
+        section {
+          padding: 4rem 1.5rem;
+        }
+        .contact-cards {
+          gap: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <nav>
+      <div class="nav-logo">Haikal.</div>
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#education">Perjalanan</a></li>
+          <li><a href="#organisasi">Organisasi</a></li>
+          <li><a href="#projects">Proyek</a></li>
+          <li><a href="#certifications">Sertifikasi</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <span class="icon" id="themeIcon">🌙</span>
+          <span id="themeLabel">Terang</span>
+        </button>
+      </div>
+    </nav>
+
+    <div id="hero">
+      <div class="hero-text">
+        <div class="hero-tag">• Komputerisasi Akuntansi</div>
+        <h1 class="hero-name">Haikal Abdul<br />Fattah Al Hamdi</h1>
+        <p class="hero-desc">
+          Mahasiswa D4 Komputerisasi Akuntansi dengan keahlian di bidang
+          keuangan, perpajakan, dan pengembangan sistem berbasis teknologi.
+          <span id="typed-text"></span><span class="cursor-blink"></span>
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">Lihat Proyek →</a>
+          <a href="#contact" class="btn-outline">Hubungi Saya</a>
+        </div>
+      </div>
+      <div class="hero-img-wrap">
+        <div class="hero-img-ring"></div>
+        <div class="hero-img-bg"></div>
+        <img
+          src="https://lh3.googleusercontent.com/d/1xqWwaD_OZ2QGgHu-H9c2TZQ2XE2nPGHH"
+          alt="Haikal"
+          class="hero-img"
+        />
+      </div>
+      <div class="scroll-hint">
+        <p>Scroll</p>
+        <span></span>
+      </div>
+    </div>
+
+    <section id="about">
+      <p class="section-label reveal">• Tentang Saya</p>
+      <h2 class="section-title reveal reveal-delay-1">Profil & Informasi</h2>
+      <div class="about-grid">
+        <div class="about-text reveal reveal-delay-1">
+          <p>
+            Saya mahasiswa semester 6
+            <strong>Politeknik Negeri Semarang</strong> dengan IPK 3.67.
+            Memadukan keahlian Akuntansi Perpajakan dengan IT Development untuk
+            membangun solusi keuangan berbasis teknologi yang relevan dan
+            adaptif.
+          </p>
+          <div class="stats-row">
+            <div class="stat">
+              <span class="stat-num" data-count="3.67">0</span>
+              <span class="stat-label">IPK</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="6">0</span>
+              <span class="stat-label">Semester</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num" data-count="8">0</span>
+              <span class="stat-label">Sertifikasi</span>
+            </div>
+          </div>
+          <div style="margin-top: 2rem">
+            <p
+              style="
+                font-size: 0.85rem;
+                color: var(--muted);
+                margin-bottom: 0.8rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+              "
+            >
+              Keahlian Utama
+            </p>
+            <div class="skills-grid">
+              <div class="skill-chip">
+                <div class="skill-name">Akuntansi</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="90"></div>
+                </div>
+              </div>
+              <div class="skill-chip">
+                <div class="skill-name">Perpajakan</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="85"></div>
+                </div>
+              </div>
+              <div class="skill-chip">
+                <div class="skill-name">Web Dev</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="78"></div>
+                </div>
+              </div>
+              <div class="skill-chip">
+                <div class="skill-name">UI Design</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="72"></div>
+                </div>
+              </div>
+              <div class="skill-chip">
+                <div class="skill-name">Audit</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="80"></div>
+                </div>
+              </div>
+              <div class="skill-chip">
+                <div class="skill-name">Azure AI</div>
+                <div class="skill-bar">
+                  <div class="skill-fill" data-width="65"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-info reveal reveal-delay-2">
+          <div class="info-row">
+            <span class="info-icon">📧</span><span>haikalabd565@gmail.com</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📞</span><span>082289268050</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">🏛️</span
+            ><span>Politeknik Negeri Semarang</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">📍</span><span>Semarang, Jawa Tengah</span>
+          </div>
+          <div class="info-row">
+            <span class="info-icon">🎓</span
+            ><span>D4 Komputerisasi Akuntansi</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EDUCATION & EXPERIENCE ===== -->
+    <section id="education">
+      <p class="section-label reveal">• Perjalanan</p>
+      <h2 class="section-title reveal reveal-delay-1">Pendidikan & Pengalaman</h2>
+      <div class="edu-exp-grid">
+
+        <!-- LEFT: PENDIDIKAN -->
+        <div class="reveal reveal-delay-1">
+          <div class="timeline-col-header">
+            <div class="timeline-col-icon">🎓</div>
+            <div>
+              <div class="timeline-col-title">Pendidikan</div>
+              <div class="timeline-col-subtitle">Academic Background</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-period">2023 - Sekarang | Semester 6</div>
+              <div class="timeline-inst">Politeknik Negeri Semarang</div>
+              <div class="timeline-loc">D4 Komputerisasi Akuntansi | Semarang, Jawa Tengah</div>
+              <div class="timeline-ipk"> IPK 3,67</div>
+              <div class="timeline-courses">
+                <span class="timeline-course-tag">Perancangan SIA</span>
+                <span class="timeline-course-tag">Analisis SIA</span>
+                <span class="timeline-course-tag">Audit</span>
+                <span class="timeline-course-tag">Perpajakan</span>
+                <span class="timeline-course-tag">Pemrograman Database</span>
+                <span class="timeline-course-tag">Design Web</span>
+                <span class="timeline-course-tag">Analisis Informasi Keuangan</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: PENGALAMAN MAGANG -->
+        <div class="reveal reveal-delay-2">
+          <div class="timeline-col-header">
+            <div class="timeline-col-icon">💼</div>
+            <div>
+              <div class="timeline-col-title">Pengalaman</div>
+              <div class="timeline-col-subtitle">Work Experience</div>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-period">April 2024 - Sekarang</div>
+              <div class="timeline-inst">Dapur Sehat SBS</div>
+              <div class="timeline-loc">Magang | Tanjung Pinang, Kepulauan Riau</div>
+              <ul class="timeline-bullet-list">
+                <li>Menyusun rekapitulasi gaji bulanan seluruh karyawan menggunakan spreadsheet.</li>
+                <li>Pengecekan teliti data absensi, izin/sakit, potongan cashbon, dan kalkulasi biaya jabatan sebelum diserahkan ke owner.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== PENGALAMAN ORGANISASI ===== -->
+    <section id="organisasi">
+      <p class="section-label reveal">• Organisasi</p>
+      <h2 class="section-title reveal reveal-delay-1">Pengalaman Organisasi</h2>
+      <div class="reveal reveal-delay-2">
+
+        <!-- Item 1: HMJ Akuntansi -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-period">Mei 2023 - Mei 2025</div>
+            <div class="timeline-inst">Himpunan Mahasiswa Jurusan Akuntansi</div>
+            <div class="timeline-loc">Staff Departemen Perpustakaan | Semarang</div>
+            <ul class="timeline-bullet-list">
+              <li>Bertugas sebagai Penanggung Jawab pada 5 Program Kerja selama 1 periode organisasi.</li>
+              <li>Melaksanakan 22 Program Kerja dalam 1 periode kepengurusan.</li>
+              <li>5 kali menjadi Master of Ceremony (MC) untuk berbagai kegiatan acara jurusan dengan peserta 200+ orang.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Item 2: PDPM 2023 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-period">Nov 2022 - Des 2022</div>
+            <div class="timeline-inst">Praktek Dakwah Pengenalan Masyarakat (PDPM 2023)</div>
+            <div class="timeline-loc">Sie Acara | Desa Jabranti, Kuningan, Jawa Barat</div>
+            <ul class="timeline-bullet-list">
+              <li>Mengajar pelajaran di Sekolah Dasar dan mengaji di TPQ selama 14 hari.</li>
+              <li>Melaksanakan kegiatan pembersihan desa dan pemberian santunan kepada masyarakat di Desa Jabranti.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="section-label reveal">• Karya</p>
+      <h2 class="section-title reveal reveal-delay-1">Proyek Pilihan</h2>
+      <div class="projects-list">
+
+        <!-- PROJECT 1: Website Development -->
+        <div class="project-showcase reveal">
+          <div class="project-carousel" data-carousel="0">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/16M9OiJVG7xQ22fbZ2zVbHo0XHvDXJdtF" alt="Website Dev 1" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1wF4M6HSk5NslSH8FD9t-7dPeL8OKXKn4" alt="Website Dev 2" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1Vsr7mWIY5xd0sSNBIM7Mxg4lG791sr8w" alt="Website Dev 3" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1uSq-7hqEeU-kYEC5VhZgWmRPh2UGlEjh" alt="Website Dev 4" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1AiH1wAI6gdAyBeIglBxZ7HuyQmLAMF8H" alt="Website Dev 5" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1plZg7_lntiP9n0QOjXluO6SdoTqLymFu" alt="Website Dev 6" />
+              </div>
+            </div>
+            <div class="carousel-overlay"></div>
+            <button class="carousel-btn prev" onclick="carouselPrev(0)"><</button>
+            <button class="carousel-btn next" onclick="carouselNext(0)">></button>
+            <div class="carousel-dots" id="dots-0">
+              <div class="carousel-dot active" onclick="carouselGo(0,0)"></div>
+              <div class="carousel-dot" onclick="carouselGo(0,1)"></div>
+              <div class="carousel-dot" onclick="carouselGo(0,2)"></div>
+              <div class="carousel-dot" onclick="carouselGo(0,3)"></div>
+              <div class="carousel-dot" onclick="carouselGo(0,4)"></div>
+              <div class="carousel-dot" onclick="carouselGo(0,5)"></div>
+            </div>
+            <div class="carousel-counter" id="counter-0">1 / 6</div>
+          </div>
+          <div class="project-info">
+            <div class="project-num">01</div>
+            <div class="project-tag-row">
+              <span class="project-tag">Frontend</span>
+              <span class="project-tag">Backend</span>
+              <span class="project-tag">Automation</span>
+            </div>
+            <div class="project-showcase-title">Website Development</div>
+            <div class="project-divider"></div>
+            <p class="project-showcase-desc">
+              Integrasi frontend & backend serta n8n automation untuk workflow bisnis yang efisien. Membangun antarmuka dashboard keuangan yang informatif, responsif, dan mudah digunakan.
+            </p>
+          </div>
+        </div>
+
+        <!-- PROJECT 2: Audit ATLAS (reverse) -->
+        <div class="project-showcase reverse reveal">
+          <div class="project-carousel" data-carousel="1">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1ruqmqz333-RnxpqsOfQY0h8gOJ6ImK6d" alt="Audit ATLAS 1" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1g14GlhFCLeQehc7300DaocTLELjGskzl" alt="Audit ATLAS 2" />
+              </div>
+            </div>
+            <div class="carousel-overlay"></div>
+            <button class="carousel-btn prev" onclick="carouselPrev(1)"><</button>
+            <button class="carousel-btn next" onclick="carouselNext(1)">></button>
+            <div class="carousel-dots" id="dots-1">
+              <div class="carousel-dot active" onclick="carouselGo(1,0)"></div>
+              <div class="carousel-dot" onclick="carouselGo(1,1)"></div>
+            </div>
+            <div class="carousel-counter" id="counter-1">1 / 2</div>
+          </div>
+          <div class="project-info">
+            <div class="project-num">02</div>
+            <div class="project-tag-row">
+              <span class="project-tag">Audit</span>
+              <span class="project-tag">ATLAS</span>
+              <span class="project-tag">Dokumentasi</span>
+            </div>
+            <div class="project-showcase-title">Audit Project - ATLAS</div>
+            <div class="project-divider"></div>
+            <p class="project-showcase-desc">
+              Praktik audit menggunakan Tool ATLAS untuk dokumentasi standar profesional. Mencakup prosedur audit, pengendalian internal, dan penyusunan kertas kerja sesuai standar auditing.
+            </p>
+          </div>
+        </div>
+
+        <!-- PROJECT 3: Design System UI -->
+        <div class="project-showcase reveal">
+          <div class="project-carousel" data-carousel="2">
+            <div class="carousel-track">
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1snvj5FQUZR5Q5Ebmhbkzut5mSJ_76JR7" alt="Design System 1" />
+              </div>
+              <div class="carousel-slide">
+                <img src="https://lh3.googleusercontent.com/d/1p9Ul9cjqcSSHlEWLMsu_gV_Z05-bnfNy" alt="Design System 2" />
+              </div>
+            </div>
+            <div class="carousel-overlay"></div>
+            <button class="carousel-btn prev" onclick="carouselPrev(2)"><</button>
+            <button class="carousel-btn next" onclick="carouselNext(2)">></button>
+            <div class="carousel-dots" id="dots-2">
+              <div class="carousel-dot active" onclick="carouselGo(2,0)"></div>
+              <div class="carousel-dot" onclick="carouselGo(2,1)"></div>
+            </div>
+            <div class="carousel-counter" id="counter-2">1 / 2</div>
+          </div>
+          <div class="project-info">
+            <div class="project-num">03</div>
+            <div class="project-tag-row">
+              <span class="project-tag">UI Design</span>
+              <span class="project-tag">Design System</span>
+              <span class="project-tag">Figma</span>
+            </div>
+            <div class="project-showcase-title">Design System UI</div>
+            <div class="project-divider"></div>
+            <p class="project-showcase-desc">
+              Perancangan sistem antarmuka yang konsisten, scalable, dan reusable. Mencakup komponen library, typography system, color tokens, dan panduan penggunaan untuk tim pengembang.
+            </p>
+            <a href="https://drive.google.com/file/d/1WRcpjv2LKfDTO_YPfj5XuyU0-WX8rF8J/view?usp=sharing" target="_blank" class="project-showcase-link">Lihat Sertifikat →</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="certifications">
+      <p class="section-label reveal">• Pencapaian</p>
+      <h2 class="section-title reveal reveal-delay-1">Sertifikasi</h2>
+      <div class="certs-gallery">
+        <!-- AZURE AI -->
+        <div class="cert-gallery-card reveal reveal-delay-1">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=1G9IOYEzVURTRzzcGX18VJFKMZCDwWpgY&sz=w800"
+              alt="Azure AI Fundamentals"
+              class="cert-gallery-img"
+              onerror="this.src='https://placehold.co/800x560/161f30/2dd4bf?text=Azure+AI+Fundamentals'"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Microsoft</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">Azure AI Fundamentals</div>
+            <div class="cert-gallery-issuer">Microsoft | 2024</div>
+            <button class="cert-detail-btn" onclick="openModal('azure')">
+              DETAIL
+            </button>
+          </div>
+        </div>
+
+        <!-- CFTR -->
+        <div class="cert-gallery-card reveal reveal-delay-2">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=16u0nGnqCPV3x9YR5i8JxLHWr7QH9JpFl&sz=w800"
+              alt="CFTR"
+              class="cert-gallery-img"
+              onerror="this.src='https://placehold.co/800x560/161f30/2dd4bf?text=CFTR+P4MI'"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">P4MI</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">
+              Certified Fundamental Tax Reporting
+            </div>
+            <div class="cert-gallery-issuer">P4MI | 2024</div>
+            <button class="cert-detail-btn" onclick="openModal('cftr')">
+              DETAIL
+            </button>
+          </div>
+        </div>
+
+        <!-- BREVET -->
+        <div class="cert-gallery-card reveal reveal-delay-3">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=1HG3WU16JIu5QVC5GmcsuseMzXjLjpcVC&sz=w800"
+              alt="Brevet Pajak"
+              class="cert-gallery-img"
+              onerror="this.src='https://placehold.co/800x560/161f30/2dd4bf?text=Brevet+Pajak+A%26B'"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Smartcounting</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">Brevet Pajak A &amp; B</div>
+            <div class="cert-gallery-issuer">Smartcounting Academy | 2024</div>
+            <button class="cert-detail-btn" onclick="openModal('brevet')">
+              DETAIL
+            </button>
+          </div>
+        </div>
+
+        <!-- AI PRODUCTIVITY AND AI API INTEGRATION -->
+        <div class="cert-gallery-card reveal reveal-delay-1">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=1HjzOI_n458i-LWacXtTK8AmbfcS7mAEi&sz=w800"
+              alt="AI Productivity and AI API Integration for Developers"
+              class="cert-gallery-img"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Hacktiv8</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">AI Productivity and AI API Integration for Developers</div>
+            <div class="cert-gallery-issuer">Hacktiv8 with Google.org</div>
+            <button class="cert-detail-btn" onclick="openModal('aiProductivityApi')">DETAIL</button>
+          </div>
+        </div>
+
+        <!-- AI IGNITION INDONESIA -->
+        <div class="cert-gallery-card reveal reveal-delay-2">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=122n2vHTb_sM33fFKxB-PKgPD_Ga0SzOu&sz=w800"
+              alt="AI Ignition Indonesia"
+              class="cert-gallery-img"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Kumpul.id</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">AI Ignition Indonesia</div>
+            <div class="cert-gallery-issuer">Sertifikat AI</div>
+            <button class="cert-detail-btn" onclick="openModal('aiIgnition')">DETAIL</button>
+          </div>
+        </div>
+
+        <!-- BELAJAR DASAR AI -->
+        <div class="cert-gallery-card reveal reveal-delay-3">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=1AnKz2LMiIySsszsZY6CxONErsQcMhNQf&sz=w800"
+              alt="Belajar Dasar AI"
+              class="cert-gallery-img"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Dicoding</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">Belajar Dasar AI</div>
+            <div class="cert-gallery-issuer">Dicoding</div>
+            <button class="cert-detail-btn" onclick="openModal('belajarDasarAi')">DETAIL</button>
+          </div>
+        </div>
+
+        <!-- AI PRAKTIS UNTUK PRODUKTIVITAS -->
+        <div class="cert-gallery-card reveal reveal-delay-1">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=1xVgLPAH_jxBhYJBI8WtrAd3re1Btx88E&sz=w800"
+              alt="AI Praktis untuk Produktivitas"
+              class="cert-gallery-img"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Dicoding</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">AI Praktis untuk Produktivitas</div>
+            <div class="cert-gallery-issuer">Dicoding</div>
+            <button class="cert-detail-btn" onclick="openModal('aiPraktis')">DETAIL</button>
+          </div>
+        </div>
+
+        <!-- PENGGUNAAN GENERATIVE AI -->
+        <div class="cert-gallery-card reveal reveal-delay-2">
+          <div class="cert-gallery-img-wrap">
+            <img
+              src="https://drive.google.com/thumbnail?id=19kHFqBrU8_pH5h6C27ZQ29TW66sAyxXs&sz=w800"
+              alt="Penggunaan Generative AI"
+              class="cert-gallery-img"
+            />
+            <div class="cert-gallery-overlay">
+              <span class="cert-gallery-badge">Dicoding</span>
+            </div>
+          </div>
+          <div class="cert-gallery-body">
+            <div class="cert-gallery-title">Penggunaan Generative AI</div>
+            <div class="cert-gallery-issuer">Dicoding</div>
+            <button class="cert-detail-btn" onclick="openModal('generativeAi')">DETAIL</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MODAL ===== -->
+    <div id="certModal" class="modal-backdrop" onclick="closeModal(event)">
+      <div class="modal-box">
+        <button class="modal-close" onclick="closeModalDirect()">✕</button>
+        <div class="modal-img-wrap">
+          <img id="modalImg" src="" alt="" class="modal-img" />
+        </div>
+        <div class="modal-content">
+          <div class="modal-badge" id="modalBadge"></div>
+          <h3 class="modal-title" id="modalTitle"></h3>
+          <div class="modal-issuer" id="modalIssuer"></div>
+          <p class="modal-desc" id="modalDesc"></p>
+          <a id="modalLink" href="#" target="_blank" class="modal-link-btn"
+            >Lihat Sertifikat Asli →</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <section id="contact">
+      <p class="section-label reveal">• Kontak</p>
+      <h2 class="section-title reveal reveal-delay-1">Mari Terhubung</h2>
+      <p class="contact-tagline reveal reveal-delay-2">
+        Ini adalah <em>ruang dokumentasi karya</em> dan pengembangan diri
+        saya.<br />
+        Untuk kolaborasi atau kebutuhan proyek, Anda dapat menghubungi saya<br />
+        melalui salah satu kanal di bawah ini - saya selalu terbuka untuk
+        peluang baru.
+      </p>
+
+      <div class="contact-cards reveal reveal-delay-2">
+        <a
+          href="https://wa.me/6282289268050"
+          target="_blank"
+          class="contact-card"
+        >
+          <div class="contact-card-icon">💬</div>
+          <div class="contact-card-label">WhatsApp</div>
+          <div class="contact-card-value">082289268050</div>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/haikal-63212b2a3"
+          target="_blank"
+          class="contact-card"
+        >
+          <div class="contact-card-icon">💼</div>
+          <div class="contact-card-label">LinkedIn</div>
+          <div class="contact-card-value">Lihat Profil →</div>
+        </a>
+        <a href="mailto:haikalabd565@gmail.com" class="contact-card">
+          <div class="contact-card-icon">✉️</div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value">haikalabd565@gmail.com</div>
+        </a>
+      </div>
+
+      <div class="contact-divider reveal">atau kirim pesan langsung</div>
+
+      <form
+        id="contactForm"
+        style="max-width: 500px; margin: 0 auto"
+        class="reveal"
+      >
+        <div style="display: grid; gap: 1rem">
+          <input
+            type="text"
+            placeholder="Nama Anda"
+            style="
+              background: var(--card);
+              border: 1px solid var(--border);
+              color: var(--text);
+              padding: 0.85rem 1.2rem;
+              border-radius: 0.6rem;
+              font-family: inherit;
+              font-size: 0.9rem;
+              outline: none;
+              transition: border-color 0.3s;
+            "
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='var(--border)'"
+          />
+          <input
+            type="email"
+            placeholder="Email Anda"
+            style="
+              background: var(--card);
+              border: 1px solid var(--border);
+              color: var(--text);
+              padding: 0.85rem 1.2rem;
+              border-radius: 0.6rem;
+              font-family: inherit;
+              font-size: 0.9rem;
+              outline: none;
+              transition: border-color 0.3s;
+            "
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='var(--border)'"
+          />
+          <textarea
+            placeholder="Pesan Anda..."
+            rows="4"
+            style="
+              background: var(--card);
+              border: 1px solid var(--border);
+              color: var(--text);
+              padding: 0.85rem 1.2rem;
+              border-radius: 0.6rem;
+              font-family: inherit;
+              font-size: 0.9rem;
+              outline: none;
+              resize: vertical;
+              transition: border-color 0.3s;
+            "
+            onfocus="this.style.borderColor='var(--accent)'"
+            onblur="this.style.borderColor='var(--border)'"
+          ></textarea>
+          <button
+            type="submit"
+            class="btn-primary"
+            style="
+              border: none;
+              cursor: pointer;
+              justify-content: center;
+              font-family: inherit;
+            "
+          >
+            Kirim Pesan •
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <footer>
+      <p>© 2026 Haikal Abdul Fattah Al Hamdi | Semarang, Jawa Tengah</p>
+      <p style="margin-top: 0.4rem; font-size: 0.75rem; opacity: 0.5">
+        Dibangun dengan ❤️ dan kopi
+      </p>
+    </footer>
+
+    <script>
+      // ===== THEME TOGGLE =====
+      const html = document.documentElement;
+      const toggleBtn = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const themeLabel = document.getElementById("themeLabel");
+
+      toggleBtn.addEventListener("click", () => {
+        const isDark = html.getAttribute("data-theme") === "dark";
+        html.setAttribute("data-theme", isDark ? "light" : "dark");
+        themeIcon.textContent = isDark ? "🌙" : "☀️";
+        themeLabel.textContent = isDark ? "Terang" : "Gelap";
+        // Reinit particles with new color
+        initParticles();
+      });
+
+      // ===== PARTICLE CANVAS =====
+      const canvas = document.getElementById("particle-canvas");
+      const ctx = canvas.getContext("2d");
+      let particles = [];
+      let animFrame;
+
+      function getAccentColor() {
+        return getComputedStyle(document.documentElement)
+          .getPropertyValue("--particle")
+          .trim();
+      }
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.reset(true);
+        }
+        reset(init) {
+          this.x = Math.random() * canvas.width;
+          this.y = init ? Math.random() * canvas.height : canvas.height + 10;
+          this.size = Math.random() * 1.5 + 0.5;
+          this.speedX = (Math.random() - 0.5) * 0.4;
+          this.speedY = -(Math.random() * 0.5 + 0.2);
+          this.alpha = Math.random() * 0.6 + 0.1;
+          this.life = 0;
+          this.maxLife = Math.random() * 200 + 100;
+        }
+        update() {
+          this.x += this.speedX;
+          this.y += this.speedY;
+          this.life++;
+          if (this.life > this.maxLife || this.y < -10) this.reset(false);
+        }
+        draw() {
+          ctx.save();
+          ctx.globalAlpha =
+            this.alpha * Math.sin((this.life / this.maxLife) * Math.PI);
+          ctx.fillStyle = getAccentColor();
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function initParticles() {
+        cancelAnimationFrame(animFrame);
+        particles = Array.from({ length: 80 }, () => new Particle());
+        animateParticles();
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((p) => {
+          p.update();
+          p.draw();
+        });
+        // Draw faint connection lines
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 100) {
+              ctx.save();
+              ctx.globalAlpha = (1 - dist / 100) * 0.12;
+              ctx.strokeStyle = getAccentColor();
+              ctx.lineWidth = 0.5;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+              ctx.restore();
+            }
+          }
+        }
+        animFrame = requestAnimationFrame(animateParticles);
+      }
+
+      window.addEventListener("resize", () => {
+        resizeCanvas();
+      });
+      resizeCanvas();
+      initParticles();
+
+      // ===== TYPED TEXT =====
+      const phrases = [
+        "Perpajakan.",
+        "Audit.",
+        "Web Development.",
+        "UI Design.",
+        "Automation.",
+      ];
+      let phraseIdx = 0,
+        charIdx = 0,
+        isDeleting = false;
+      const typedEl = document.getElementById("typed-text");
+
+      function typeLoop() {
+        const current = phrases[phraseIdx];
+        if (!isDeleting) {
+          typedEl.textContent = current.slice(0, ++charIdx);
+          if (charIdx === current.length) {
+            isDeleting = true;
+            setTimeout(typeLoop, 1800);
+            return;
+          }
+        } else {
+          typedEl.textContent = current.slice(0, --charIdx);
+          if (charIdx === 0) {
+            isDeleting = false;
+            phraseIdx = (phraseIdx + 1) % phrases.length;
+          }
+        }
+        setTimeout(typeLoop, isDeleting ? 60 : 100);
+      }
+      setTimeout(typeLoop, 1200);
+
+      // ===== PROJECT CAROUSEL =====
+      const carouselState = {};
+
+      document.querySelectorAll('[data-carousel]').forEach(el => {
+        const id = parseInt(el.dataset.carousel);
+        const slides = el.querySelectorAll('.carousel-slide');
+        carouselState[id] = { current: 0, total: slides.length };
+      });
+
+      function carouselGo(id, idx) {
+        const el = document.querySelector(`[data-carousel="${id}"]`);
+        const state = carouselState[id];
+        state.current = idx;
+        el.querySelector('.carousel-track').style.transform = `translateX(-${idx * 100}%)`;
+        el.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === idx));
+        el.querySelector(`#counter-${id}`).textContent = `${idx + 1} / ${state.total}`;
+      }
+
+      function carouselNext(id) {
+        const s = carouselState[id];
+        carouselGo(id, (s.current + 1) % s.total);
+      }
+
+      function carouselPrev(id) {
+        const s = carouselState[id];
+        carouselGo(id, (s.current - 1 + s.total) % s.total);
+      }
+
+      // Touch/swipe support
+      document.querySelectorAll('[data-carousel]').forEach(el => {
+        const id = parseInt(el.dataset.carousel);
+        let startX = 0;
+        el.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+        el.addEventListener('touchend', e => {
+          const diff = startX - e.changedTouches[0].clientX;
+          if (Math.abs(diff) > 40) diff > 0 ? carouselNext(id) : carouselPrev(id);
+        });
+      });
+
+      // ===== SCROLL REVEAL =====
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add("visible");
+              // Animate skill bars
+              e.target.querySelectorAll(".skill-fill").forEach((bar) => {
+                bar.style.width = bar.dataset.width + "%";
+              });
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+
+      document
+        .querySelectorAll(".reveal, .project-showcase")
+        .forEach((el) => observer.observe(el));
+
+      // ===== COUNTER ANIMATION =====
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.querySelectorAll("[data-count]").forEach((el) => {
+                const target = parseFloat(el.dataset.count);
+                const isDecimal = target % 1 !== 0;
+                let start = 0;
+                const step = target / 60;
+                const timer = setInterval(() => {
+                  start = Math.min(start + step, target);
+                  el.textContent = isDecimal
+                    ? start.toFixed(2)
+                    : Math.floor(start);
+                  if (start >= target) clearInterval(timer);
+                }, 16);
+              });
+              counterObserver.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document
+        .querySelectorAll(".stats-row")
+        .forEach((el) => counterObserver.observe(el));
+
+      // ===== PARALLAX HERO IMG =====
+      window.addEventListener("mousemove", (e) => {
+        const img = document.querySelector(".hero-img");
+        if (!img) return;
+        const mx = (e.clientX / window.innerWidth - 0.5) * 12;
+        const my = (e.clientY / window.innerHeight - 0.5) * 8;
+        img.style.transform = `translate(${mx}px, ${my}px)`;
+      });
+
+      // ===== CERT MODAL =====
+      const certData = {
+        azure: {
+          title: "Azure AI Fundamentals",
+          issuer: "Microsoft | 2024",
+          badge: "Microsoft",
+          desc: "Memahami konsep dasar AI - mencakup Machine Learning, Computer Vision, dan Natural Language Processing (NLP) pada ekosistem Microsoft Azure. Sertifikasi ini membuktikan kemampuan dalam mengidentifikasi dan mendeskripsikan beban kerja AI serta mempertimbangkan implikasi AI yang bertanggung jawab.",
+          img: "https://drive.google.com/thumbnail?id=1G9IOYEzVURTRzzcGX18VJFKMZCDwWpgY&sz=w800",
+          link: "https://drive.google.com/file/d/1G9IOYEzVURTRzzcGX18VJFKMZCDwWpgY/view?usp=drive_link",
+        },
+        cftr: {
+          title: "Certified Fundamental Tax Reporting",
+          issuer: "P4MI | 2024",
+          badge: "P4MI",
+          desc: "Kompeten dalam pelaporan pajak berbasis sistem digital - mencakup e-Bupot PPh 21 & Unifikasi, e-Faktur Adaptasi Coretax, serta Bukti Potong & SPT Masa sesuai standar kompetensi nasional yang diakui P4MI.",
+          img: "https://drive.google.com/thumbnail?id=16u0nGnqCPV3x9YR5i8JxLHWr7QH9JpFl&sz=w800",
+          link: "https://drive.google.com/file/d/16u0nGnqCPV3x9YR5i8JxLHWr7QH9JpFl/view?usp=drive_link",
+        },
+        brevet: {
+          title: "Brevet Pajak A & B",
+          issuer: "Smartcounting Academy | 2024",
+          badge: "Smartcounting Academy",
+          desc: "Lulus dengan rata-rata nilai 83 (A). Program Brevet Pajak A & B mencakup materi PPh Orang Pribadi, PPh Badan, PPN & PPnBM, serta tata cara pelaporan SPT secara komprehensif sesuai regulasi perpajakan Indonesia.",
+          img: "https://drive.google.com/thumbnail?id=1HG3WU16JIu5QVC5GmcsuseMzXjLjpcVC&sz=w800",
+          link: "https://drive.google.com/file/d/1HG3WU16JIu5QVC5GmcsuseMzXjLjpcVC/view?usp=drive_link",
+        },
+        aiProductivityApi: {
+          title: "AI Productivity and AI API Integration for Developers",
+          issuer: "Sertifikat AI",
+          badge: "AI",
+          desc: "Sertifikat pelatihan mengenai pemanfaatan AI untuk meningkatkan produktivitas serta integrasi AI API dalam pengembangan aplikasi.",
+          img: "https://drive.google.com/thumbnail?id=1HjzOI_n458i-LWacXtTK8AmbfcS7mAEi&sz=w800",
+          link: "https://drive.google.com/file/d/14x811HvlBfFlmbaIglhoYFxrnS0LzXWL/view?usp=sharing",
+        },
+        aiIgnition: {
+          title: "AI Ignition Indonesia",
+          issuer: "Sertifikat AI",
+          badge: "AI",
+          desc: "Sertifikat program AI Ignition Indonesia.",
+          img: "https://drive.google.com/thumbnail?id=122n2vHTb_sM33fFKxB-PKgPD_Ga0SzOu&sz=w800",
+          link: "https://drive.google.com/file/d/1ktjMjq5BAyA_s8zWTX4yRRHIU29hh92a/view?usp=sharing",
+        },
+        belajarDasarAi: {
+          title: "Belajar Dasar AI",
+          issuer: "Sertifikat AI",
+          badge: "AI",
+          desc: "Sertifikat pembelajaran dasar Artificial Intelligence.",
+          img: "https://drive.google.com/thumbnail?id=1AnKz2LMiIySsszsZY6CxONErsQcMhNQf&sz=w800",
+          link: "https://drive.google.com/file/d/1Y0bgW7nBNLiFJ0f_3WZRI2IFUz7pfZDA/view?usp=sharing",
+        },
+        aiPraktis: {
+          title: "AI Praktis untuk Produktivitas",
+          issuer: "Sertifikat AI",
+          badge: "AI",
+          desc: "Sertifikat pembelajaran mengenai pemanfaatan Artificial Intelligence secara praktis untuk produktivitas.",
+          img: "https://drive.google.com/thumbnail?id=1xVgLPAH_jxBhYJBI8WtrAd3re1Btx88E&sz=w800",
+          link: "https://drive.google.com/file/d/197kQ-DFI_cPlnxYbdWX1KQKT0ejciZ2V/view?usp=sharing",
+        },
+        generativeAi: {
+          title: "Penggunaan Generative AI",
+          issuer: "Sertifikat AI",
+          badge: "AI",
+          desc: "Sertifikat pembelajaran mengenai penggunaan Generative AI.",
+          img: "https://drive.google.com/thumbnail?id=19kHFqBrU8_pH5h6C27ZQ29TW66sAyxXs&sz=w800",
+          link: "https://drive.google.com/file/d/1Exr72VoxwyCEc-CWY8DjC2Z88ptySnuJ/view?usp=sharing",
+        },
+      };
+
+      function openModal(key) {
+        const d = certData[key];
+        document.getElementById("modalImg").src = d.img;
+        document.getElementById("modalImg").alt = d.title;
+        document.getElementById("modalTitle").textContent = d.title;
+        document.getElementById("modalIssuer").textContent = d.issuer;
+        document.getElementById("modalBadge").textContent = d.badge;
+        document.getElementById("modalDesc").textContent = d.desc;
+        document.getElementById("modalLink").href = d.link;
+        document.getElementById("certModal").classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeModalDirect() {
+        document.getElementById("certModal").classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function closeModal(e) {
+        if (e.target === document.getElementById("certModal"))
+          closeModalDirect();
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeModalDirect();
+      });
+
+      // ===== FORM SUBMIT =====
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const btn = e.target.querySelector("button");
+        btn.textContent = "OK Pesan Terkirim!";
+        btn.style.background = "#10b981";
+        setTimeout(() => {
+          btn.textContent = "Kirim Pesan •";
+          btn.style.background = "";
+          e.target.reset();
+        }, 3000);
+      });
+    </script>
+  </body>
+</html>

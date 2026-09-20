@@ -1,0 +1,126 @@
+/* ===== ABOUT SECTION ===== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.about-text p {
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.stats-row {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent);
+  display: block;
+}
+
+.stat-label {
+  font-size: 0.78rem;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.skill-chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  padding: 1rem 1.2rem;
+  font-size: 0.85rem;
+  transition: all 0.3s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-chip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.skill-chip:hover::before {
+  opacity: 0.07;
+}
+
+.skill-chip:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--shadow);
+}
+
+.skill-name {
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+
+.skill-bar {
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+}
+
+.skill-fill {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--accent), var(--accent2));
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.9rem 1.2rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  margin-bottom: 0.8rem;
+  transition: all 0.3s;
+}
+
+.info-row:hover {
+  border-color: var(--border-hover);
+  transform: translateX(4px);
+}
+
+.info-icon {
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+@media (max-width: 900px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
