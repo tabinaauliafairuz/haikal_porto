@@ -33,8 +33,10 @@
   align-items: center;
   gap: 4rem;
   padding-top: 8rem;
+  padding-bottom: 5rem;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 .hero-tag {
@@ -168,9 +170,10 @@
   transform: scale(1.03) translateY(-4px);
 }
 
+/* SCROLL INDICATOR */
 .scroll-hint {
   position: absolute;
-  bottom: 2rem;
+  bottom: 1.5rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -182,6 +185,8 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   animation: bounce 2s ease infinite;
+  pointer-events: none;
+  z-index: 5;
 }
 
 .scroll-hint span {
@@ -200,20 +205,43 @@
   vertical-align: middle;
 }
 
-/* RESPONSIVE MOBILE EXACT MATCH DARI VERSI ASLI (Porto Aing/Index.html) */
+/* RESPONSIVE MOBILE */
 @media (max-width: 900px) {
   #hero {
     grid-template-columns: 1fr;
     text-align: center;
     gap: 2rem;
+    padding-top: 7rem;
+    padding-bottom: 2rem;
+    min-height: auto;
   }
   .hero-img-wrap {
     order: -1;
+    margin-bottom: 1rem;
+  }
+  .hero-img-ring {
+    width: 280px;
+    height: 280px;
+  }
+  .hero-img-bg {
+    width: 260px;
+    height: 260px;
+  }
+  .hero-img {
+    width: 240px;
   }
   .hero-desc {
     margin: 0 auto 2rem;
   }
   .hero-actions {
     justify-content: center;
+    margin-bottom: 2rem;
+  }
+  .scroll-hint {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 1.5rem auto 0;
   }
 }

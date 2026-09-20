@@ -1,8 +1,9 @@
 /**
  * Komponen: BerandaHeader.jsx
- * Fungsi: Header persis seperti versi asli.
+ * Fungsi: Header halaman dengan urutan mobile yang rapi.
  */
 import React, { useState, useEffect } from "react";
+import { ArrowRight } from "lucide-react";
 import { dataPribadi } from "../data/dataPortofolio";
 import "../styles/beranda-header.css";
 
@@ -72,7 +73,9 @@ export default function BerandaHeader() {
             <span className="cursor-blink"></span>
           </p>
           <div className="hero-actions">
-            <a href="#projects" className="btn-primary">Lihat Proyek ?</a>
+            <a href="#projects" className="btn-primary">
+              Lihat Proyek <ArrowRight size={16} />
+            </a>
             <a href="#contact" className="btn-outline">Hubungi Saya</a>
           </div>
         </div>

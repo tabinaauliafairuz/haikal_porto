@@ -1,4 +1,4 @@
-/* ===== NAV & THEME TOGGLE (EXACT ORIGINAL) ===== */
+/* ===== NAV & THEME TOGGLE ===== */
 nav {
   position: fixed;
   top: 0;
@@ -56,12 +56,16 @@ nav {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.4rem;
   padding: 0.35rem 0.8rem;
   font-size: 0.85rem;
   color: var(--muted);
   transition: all 0.3s;
   white-space: nowrap;
+  width: 96px;
+  user-select: none;
+  flex-shrink: 0;
 }
 
 .theme-toggle:hover {
@@ -70,13 +74,17 @@ nav {
 }
 
 .theme-toggle .icon {
-  font-size: 1rem;
-  transition: transform 0.4s;
-  display: flex;
+  font-size: 0.95rem;
+  display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
 
-/* RESPONSIVE MOBILE EXACT MATCH DARI VERSI ASLI */
+#themeLabel {
+  display: inline-block;
+  text-align: center;
+}
+
 @media (max-width: 900px) {
   nav {
     padding: 1rem 1.5rem;
